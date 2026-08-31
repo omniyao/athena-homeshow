@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Guess the Bubbles in the Bath | Athena Bathrooms</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <a href="https://athena.co.nz" class="brand-logo"><img src="https://athena.co.nz/cdn/shop/files/athena_web23_logo_100x50_b6de8d0f-6afd-4391-9208-b5a00ef5b3bb_410x.png?v=1696387719" alt="Athena Bathrooms" width="150" height="40" style="height: 38px; width: auto; display: block;" loading="lazy"></a>
+    <div class="event-badge" id="eventBadge">Home Show Auckland 2026</div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    
+    <!-- Form View -->
+    <div id="formSection" class="hero-card">
+      <div class="hero-banner">
+        <div class="hero-tagline">Home Show Exclusive Activation</div>
+        <h1 class="hero-title">Guess the Bubbles & Win</h1>
+        <p class="hero-subtitle">How many bubbles are in the bath? Take your best guess for the chance to win one of the eligible Athena products showcased on our stand.</p>
+      </div>
+
+      <!-- 3-Step Instruction Bar -->
+      <div class="how-it-works">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-label">Count</div>
+          <div class="step-desc">Take a good look at the bath and guess the bubble count.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-label">Choose</div>
+          <div class="step-desc">Select the one Athena product from the display you want to win.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-label">Enter</div>
+          <div class="step-desc">Submit your details and guess. Closest guess wins!</div>
+        </div>
+      </div>
+
+      <!-- Entry Form -->
+      <form id="bubblesEntryForm" class="form-container" novalidate>
+        
+        <!-- Bubble Guess Input -->
+        <div class="guess-input-wrapper">
+          <label for="bubbleGuess" class="form-label">How Many Bubbles Are In The Bath? <span class="required">*</span></label>
+          <input type="number" id="bubbleGuess" name="bubbleGuess" class="form-input form-input-lg" placeholder="e.g. 1450" min="1" max="100000" required inputmode="numeric">
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem;">Enter whole numbers only.</p>
+        </div>
+
+        <!-- Nominated Prize Selector -->
+        <h2 class="form-section-title">Select Your Nominated Prize</h2>
+        <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1rem;">Choose the one eligible Athena product you'd love to take home:</p>
+        
+        <div class="prize-grid">
+          <!-- Prize 1 -->
+          <div class="prize-card selected">
+            <input type="radio" name="nominatedPrize" value="Motif Freestanding Bath" class="prize-radio" checked>
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80" alt="Motif Freestanding Bath" class="prize-img">
+            <span class="prize-category">Freestanding Bath</span>
+            <span class="prize-title">Motif Freestanding Bath</span>
+          </div>
+
+          <!-- Prize 2 -->
+          <div class="prize-card">
+            <input type="radio" name="nominatedPrize" value="Array Wall-Hung Vanity" class="prize-radio">
+            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=400&q=80" alt="Array Wall-Hung Vanity" class="prize-img">
+            <span class="prize-category">Vanity Cabinet</span>
+            <span class="prize-title">Array 900 Wall Vanity</span>
+          </div>
+
+          <!-- Prize 3 -->
+          <div class="prize-card">
+            <input type="radio" name="nominatedPrize" value="Solstice Sliding Shower" class="prize-radio">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=400&q=80" alt="Solstice Sliding Shower" class="prize-img">
+            <span class="prize-category">Shower Enclosure</span>
+            <span class="prize-title">Solstice Sliding Shower</span>
+          </div>
+
+          <!-- Prize 4 -->
+          <div class="prize-card">
+            <input type="radio" name="nominatedPrize" value="Halo LED Round Mirror" class="prize-radio">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400&q=80" alt="Halo LED Round Mirror" class="prize-img">
+            <span class="prize-category">Mirrors & Storage</span>
+            <span class="prize-title">Halo 800 LED Mirror</span>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <h2 class="form-section-title">Your Details</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name <span class="required">*</span></label>
+            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="e.g. Sarah" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lastName" class="form-label">Surname <span class="required">*</span></label>
+            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="e.g. Jenkins" required autocomplete="family-name">
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="sarah@example.co.nz" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="mobile" class="form-label">Mobile Number <span class="required">*</span></label>
+            <input type="tel" id="mobile" name="mobile" class="form-input" placeholder="021 123 4567" required autocomplete="tel">
+          </div>
+          <div class="form-group form-group-full">
+            <label for="address" class="form-label">Residential Address <span class="required">*</span></label>
+            <input type="text" id="address" name="address" class="form-input" placeholder="e.g. 14 High Street, Ponsonby, Auckland" required autocomplete="street-address">
+          </div>
+          <div class="form-group">
+            <label for="postcode" class="form-label">Postcode <span class="required">*</span></label>
+            <input type="text" id="postcode" name="postcode" class="form-input" placeholder="e.g. 1011" required autocomplete="postal-code">
+          </div>
+        </div>
+
+        <!-- Consent Controls -->
+        <div class="consent-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+            <span>I have read and agree to the <a href="#" id="openTermsModal" class="terms-link">Guess the Bubbles Competition Terms & Conditions</a>. <span class="required">*</span></span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="marketingConsent" name="marketingConsent">
+            <span>Yes, I'd like to receive bathroom inspiration, product news, promotions and other communications from OPR Limited, home of Athena Bathrooms and Clearlite Bathrooms. (Optional)</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" class="btn-submit">Submit My Guess</button>
+      </form>
+    </div>
+
+    <!-- Success View -->
+    <div id="successSection" class="success-card">
+      <div class="success-icon">✓</div>
+      <h2 class="success-title">You're In!</h2>
+      <p class="success-body">
+        Thanks for visiting Athena at the Home Show and entering our <strong>Guess the Bubbles in the Bath</strong> competition. We've received your guess and your nominated Athena prize.
+      </p>
+      <div class="success-actions">
+        <p style="font-weight: 600; color: var(--color-primary);">While you're here, discover our limited-time show specials:</p>
+        <a href="https://athena.co.nz" target="_blank" rel="noopener" class="btn-secondary">View Home Show Specials</a>
+        <button id="resetKioskBtn" style="background: none; border: none; color: var(--color-text-muted); text-decoration: underline; margin-top: 1rem; cursor: pointer;">Submit Another Guess / Next Person</button>
+      </div>
+      <div class="kiosk-countdown" id="kioskCountdown"></div>
+    </div>
+
+  </main>
+
+  <!-- Terms & Conditions Modal -->
+  <div id="termsModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Guess the Bubbles in the Bath – Terms & Conditions</h3>
+        <button id="closeTermsModal" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>1. Promoter:</strong> The promoter is OPR Limited, the Home of Athena & Clearlite Bathrooms (“Athena” or “the Promoter”).</p>
+        <br>
+        <p><strong>2. Eligibility:</strong> Entry is open to New Zealand residents aged 18 years or over. Employees of OPR Limited and their immediate families, and any other persons directly involved in the administration of the competition, are not eligible to enter.</p>
+        <br>
+        <p><strong>3. How to Enter:</strong> To enter, participants must complete the official Guess the Bubbles in the Bath entry form during the applicable competition period, provide required contact details, submit their numeric bubble guess, and nominate one eligible Athena product displayed on the stand. No purchase necessary.</p>
+        <br>
+        <p><strong>4. Eligible Prizes:</strong> Entrants may select one prize from the Athena products specifically identified as eligible on the stand. The product selected at the time of entry cannot be changed after the competition closes.</p>
+        <br>
+        <p><strong>5. One Entry Per Person:</strong> Only one Guess the Bubbles entry per person per Home Show is permitted. Participation in both Guess the Bubbles and the separate Array Design Studio activation is permitted.</p>
+        <br>
+        <p><strong>6. Competition Periods:</strong><br>
+        • Auckland Home Show: Opens 10 Sept 2026, closes 6pm on 13 Sept 2026. Winner drawn 14 Sept 2026.<br>
+        • Christchurch Home Show: Opens 16 Oct 2026, closes 6pm on 18 Oct 2026. Winner drawn 19 Oct 2026.</p>
+        <br>
+        <p><strong>7. How the Winner is Determined:</strong> The entrant whose guess is closest to the actual number of bubbles in the bath wins. If two or more entrants submit equally close winning guesses, the winner will be selected by random draw from those tied entries.</p>
+        <br>
+        <p><strong>8. The Prize:</strong> The winner receives the nominated Athena product only. Installation, plumbing, and building work are not included. Prize is non-transferable and not redeemable for cash.</p>
+        <br>
+        <p><strong>9. Winner Notification:</strong> The winner will be contacted via email/phone and must respond within five (5) business days.</p>
+        <br>
+        <p><strong>10. Marketing Consent:</strong> Marketing consent is optional and unticked by default. Choosing not to receive marketing communications will not affect an entrant’s chance of winning.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
