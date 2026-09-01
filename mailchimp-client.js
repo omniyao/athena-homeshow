@@ -21,8 +21,8 @@ class MailchimpClient {
     const isSubscribed = Boolean(data.marketingConsent);
 
     const mergeFields = {
-      FIRST: data.firstName || '',   // Exact match for Athena audience
-      FNAME: data.firstName || '',   // Fallback for standard audiences
+      FIRST: data.firstName || '',
+      FNAME: data.firstName || '',
       LAST: data.lastName || '',
       LNAME: data.lastName || '',
       PHONE: data.mobile || '',
@@ -31,6 +31,7 @@ class MailchimpClient {
       BUSINESSSCA: 'Consumer',
       BUBBLE_GSS: data.bubbleGuess ? Number(data.bubbleGuess) : 0,
       PRIZE_NOM: data.nominatedPrize || '',
+      EVENT: data.event || 'Home Show Auckland 2026',
       MMERGE14: data.bubbleGuess ? Number(data.bubbleGuess) : 0,
       PROJECT: data.nominatedPrize || ''
     };
@@ -63,6 +64,15 @@ class MailchimpClient {
     const subscriberHash = this._getSubscriberHash(data.email);
     const isSubscribed = Boolean(data.marketingConsent);
 
+    // Format configuration summary string
+    let cfgString = '';
+    if (typeof data.configuration === 'object' && data.configuration !== null) {
+      const c = data.configuration;
+      cfgString = `${c.size || ''} | ${c.style || ''} | ${c.drawer || ''} | ${c.topMaterial || ''} | ${c.finish || ''} | ${c.handle || ''} | ${c.mounting || ''}`;
+    } else {
+      cfgString = data.configuration || '';
+    }
+
     const mergeFields = {
       FIRST: data.firstName || '',
       FNAME: data.firstName || '',
@@ -72,7 +82,8 @@ class MailchimpClient {
       POSTCODE: data.postcode ? String(data.postcode) : '',
       SIGNUPVIA: 'Event // Show',
       BUSINESSSCA: 'Consumer',
-      ARRAY_CFG: typeof data.configuration === 'object' ? JSON.stringify(data.configuration) : (data.configuration || ''),
+      ARRAY_CFG: cfgString,
+      ARRAY_URL: data.arrayUrl || 'https://athena.co.nz/pages/array-builder',
       SOAP_STAT: soapResult.isEligible ? 'Eligible' : 'Not Eligible',
       SOAP_CODE: soapResult.voucherCode || 'N/A'
     };
