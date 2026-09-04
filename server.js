@@ -70,13 +70,15 @@ app.post('/api/bubbles-entry', async (req, res) => {
     } = req.body;
 
     // Validation
-    if (!firstName || !lastName || !email || !mobile || !postcode || !bubbleGuess || !nominatedPrize) {
+    if (!firstName || !lastName || !email || !mobile || !postcode || !bubbleGuess) {
       return res.status(400).json({ error: 'Missing required entry fields.' });
     }
 
     if (!agreeTerms) {
       return res.status(400).json({ error: 'You must accept the competition Terms & Conditions.' });
     }
+
+    const assignedPrize = nominatedPrize || 'Athena Home Show Prize';
 
     const entryRecord = {
       id: 'BBL-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
@@ -87,16 +89,16 @@ app.post('/api/bubbles-entry', async (req, res) => {
       address,
       postcode,
       bubbleGuess: Number(bubbleGuess),
-      nominatedPrize,
+      nominatedPrize: assignedPrize,
       marketingConsent: Boolean(marketingConsent),
       event: event || 'Home Show Auckland 2026',
       submittedAt: new Date().toISOString()
     };
 
-    // 1. Save entry to secure competition database (independent of marketing opt-in)
+    // 1. Save entry to secure competition database
     appendRecord(BUBBLES_DB, entryRecord);
 
-    // 2. Sync / Upsert to Mailchimp Audience
+    // 2. Sync to Mailchimp Audience
     const mcResult = await mailchimpClient.syncBubblesEntry(entryRecord);
 
     console.log(`[Bubbles Entry Logged] ${entryRecord.email} - Guess: ${entryRecord.bubbleGuess} - Prize: ${entryRecord.nominatedPrize}`);

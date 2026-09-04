@@ -58,8 +58,27 @@ class BeyondSoapManager {
   processArraySubmission(email, showLocation) {
     const db = this._readDB();
     const dayKey = this._getDayKey(showLocation);
+    const cleanEmail = (email || '').toLowerCase().trim();
 
-    // Initialize day count if not present
+    // 1. Check if this customer was already issued a voucher today
+    if (cleanEmail && db.vouchers) {
+      const existingCode = Object.keys(db.vouchers).find(code => {
+        const v = db.vouchers[code];
+        return v.email === cleanEmail && v.dayKey === dayKey;
+      });
+
+      if (existingCode) {
+        return {
+          isEligible: true,
+          voucherCode: existingCode,
+          dailyNumber: db.vouchers[existingCode].dailyNumber,
+          dayKey,
+          alreadyIssued: true
+        };
+      }
+    }
+
+    // 2. Initialize day count if not present
     if (!db.counts[dayKey]) {
       db.counts[dayKey] = 0;
     }
@@ -72,11 +91,13 @@ class BeyondSoapManager {
     let voucherCode = null;
 
     if (isEligible) {
-      // Generate formatted voucher code e.g. BS-AKL-20260910-042
-      voucherCode = `BS-${dayKey}-${String(currentNumber).padStart(3, '0')}`;
+      // Generate guaranteed unique voucher code (e.g. BS-AKL-0904-001-7K9F)
+      const randSuffix = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const cleanDayKey = dayKey.replace(/_/g, '-');
+      voucherCode = `BS-${cleanDayKey}-${String(currentNumber).padStart(3, '0')}-${randSuffix}`;
       
       db.vouchers[voucherCode] = {
-        email: email.toLowerCase(),
+        email: cleanEmail,
         showLocation,
         dayKey,
         dailyNumber: currentNumber,
