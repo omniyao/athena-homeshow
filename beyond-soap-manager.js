@@ -91,7 +91,7 @@ class BeyondSoapManager {
     let voucherCode = null;
 
     if (isEligible) {
-      // Generate guaranteed unique voucher code (e.g. BS-AKL-0904-001-7K9F)
+      // Generate guaranteed unique voucher code (e.g. BS-AKL-2026-09-04-001-7K9F)
       const randSuffix = Math.random().toString(36).substring(2, 6).toUpperCase();
       const cleanDayKey = dayKey.replace(/_/g, '-');
       voucherCode = `BS-${cleanDayKey}-${String(currentNumber).padStart(3, '0')}-${randSuffix}`;
